@@ -7,8 +7,29 @@ const fetch = require('node-fetch');
 const imageConverter = require('./image-converter');
 
 const app = express();
-const PORT = process.env.PORT || 3000;
-const BASE_URL = `http://localhost:${PORT}`;
+const initialPort = process.env.PORT || 10000;
+let currentPort = initialPort;
+let server;
+let BASE_URL;
+
+// 사용 가능한 포트를 찾아서 서버를 시작하는 함수
+function startServer(port) {
+  return new Promise((resolve, reject) => {
+    server = app.listen(port, () => {
+      console.log(`이미지 변환 MCP 서버가 포트 ${port}에서 실행 중입니다.`);
+      BASE_URL = `http://localhost:${port}`;
+      console.log(`기본 URL: ${BASE_URL}`);
+      resolve(true);
+    }).on('error', (err) => {
+      if (err.code === 'EADDRINUSE') {
+        console.log(`포트 ${port}가 이미 사용 중입니다. 다음 포트를 시도합니다...`);
+        resolve(false);
+      } else {
+        reject(err);
+      }
+    });
+  });
+}
 
 // 임시 파일 저장을 위한 디렉토리 생성
 const uploadsDir = path.join(__dirname, 'uploads');
@@ -186,7 +207,19 @@ app.post('/mcp/run-tool', express.json(), async (req, res) => {
   }
 });
 
-app.listen(PORT, () => {
-  console.log(`이미지 변환 MCP 서버가 포트 ${PORT}에서 실행 중입니다.`);
-  console.log(`기본 URL: ${BASE_URL}`);
-});
+// 사용 가능한 포트를 찾아서 서버 시작
+(async function findAvailablePortAndStart() {
+  let isAvailable = false;
+  
+  while (!isAvailable) {
+    try {
+      isAvailable = await startServer(currentPort);
+      if (!isAvailable) {
+        currentPort++;
+      }
+    } catch (error) {
+      console.error('서버 시작 오류:', error);
+      process.exit(1);
+    }
+  }
+})();

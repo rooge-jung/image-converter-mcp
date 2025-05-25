@@ -11,8 +11,7 @@ function startServer() {
   const serverProcess = spawn('node', [path.join(__dirname, '../index.js')], {
     stdio: 'inherit',
     env: {
-      ...process.env,
-      PORT: process.env.PORT || 3000
+      ...process.env
     }
   });
 
