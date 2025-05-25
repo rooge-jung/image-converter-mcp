@@ -1,10 +1,10 @@
 {
   "name": "image-converter-mcp",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "image-converter MCP server",
   "type": "module",
   "bin": {
-    "image-converter": "dist/index.js"
+    "image-converter-mcp": "dist/index.ts"
   },
   "files": [
     "dist"
