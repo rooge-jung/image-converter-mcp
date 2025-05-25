@@ -26,7 +26,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/windsurf/image-converter-mcp"
+    "url": "https://github.com/rooge-jung/image-converter-mcp"
   },
   "dependencies": {
     "express": "^4.18.2",
