@@ -1,0 +1,10 @@
+{
+  "image-converter": {
+    "command": "npx",
+    "args": [
+      "-y",
+      "image-converter-mcp"
+    ],
+    "env": {}
+  }
+}

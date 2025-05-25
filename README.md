@@ -1,6 +1,6 @@
 # 이미지 변환 MCP (Model Context Protocol)
 
-PNG 이미지를 WebP 형식으로 변환하는 MCP 서버입니다. Railway에 배포하여 Windsurf에서 사용할 수 있습니다.
+PNG 이미지를 WebP 형식으로 변환하는 MCP 서버입니다. Windsurf에서 사용할 수 있습니다.
 
 ## 기능
 
@@ -40,7 +40,7 @@ npm start
 {
   "success": true,
   "message": "PNG를 WebP로 변환했습니다.",
-  "outputUrl": "https://your-app.railway.app/output/1621234567890.webp",
+  "outputUrl": "http://localhost:3000/output/1621234567890.webp",
   "fileName": "1621234567890.webp"
 }
 ```
@@ -128,7 +128,7 @@ npm start
 {
   "success": true,
   "message": "PNG를 WebP로 변환했습니다.",
-  "output_url": "https://your-app.railway.app/output/1621234567890.webp",
+  "output_url": "http://localhost:3000/output/1621234567890.webp",
   "file_name": "1621234567890.webp"
 }
 ```
@@ -142,7 +142,7 @@ npm start
 const formData = new FormData();
 formData.append('image', pngFile); // pngFile은 File 객체
 
-fetch('https://your-app.railway.app/api/convert/png-to-webp', {
+fetch('http://localhost:3000/api/convert/png-to-webp', {
   method: 'POST',
   body: formData
 })
@@ -159,7 +159,7 @@ fetch('https://your-app.railway.app/api/convert/png-to-webp', {
 
 ```javascript
 // Windsurf MCP 사용 예시
-fetch('https://your-app.railway.app/mcp/run-tool', {
+fetch('http://localhost:3000/mcp/run-tool', {
   method: 'POST',
   headers: {
     'Content-Type': 'application/json'
@@ -181,24 +181,19 @@ fetch('https://your-app.railway.app/mcp/run-tool', {
 });
 ```
 
-## Railway 배포 방법
+## Windsurf에서 사용하는 방법
 
-1. [Railway](https://railway.app/) 계정 생성 및 로그인
-
-2. 새 프로젝트 생성
-   - GitHub 저장소에서 배포하거나 직접 코드 업로드
-
-3. 환경 변수 설정 (필요한 경우)
-   - `PORT`: 서버 포트 (기본값: 3000)
-   - `NODE_ENV`: 환경 설정 (production, development 등)
-
-4. 배포 완료 후 제공되는 URL을 Windsurf MCP 서버 목록에 추가
-
-## Windsurf 연동 방법
-
-1. Windsurf 관리자 페이지에서 MCP 서버 추가
-   - 서버 이름: `image-converter`
-   - 서버 URL: `https://your-app.railway.app`
+1. Windsurf의 `mcp_config.json` 파일에 다음 설정 추가:
+   ```json
+   "image-converter": {
+     "command": "npx",
+     "args": [
+       "-y",
+       "image-converter-mcp"
+     ],
+     "env": {}
+   }
+   ```
 
 2. Windsurf에서 다음과 같이 사용:
    ```

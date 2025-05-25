@@ -8,10 +8,7 @@ const imageConverter = require('./image-converter');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
-const NODE_ENV = process.env.NODE_ENV || 'development';
-const BASE_URL = process.env.RAILWAY_PUBLIC_DOMAIN 
-  ? `https://${process.env.RAILWAY_PUBLIC_DOMAIN}` 
-  : `http://localhost:${PORT}`;
+const BASE_URL = `http://localhost:${PORT}`;
 
 // 임시 파일 저장을 위한 디렉토리 생성
 const uploadsDir = path.join(__dirname, 'uploads');
@@ -191,6 +188,5 @@ app.post('/mcp/run-tool', express.json(), async (req, res) => {
 
 app.listen(PORT, () => {
   console.log(`이미지 변환 MCP 서버가 포트 ${PORT}에서 실행 중입니다.`);
-  console.log(`환경: ${NODE_ENV}`);
   console.log(`기본 URL: ${BASE_URL}`);
 });
