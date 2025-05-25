@@ -19,7 +19,7 @@
     "inspect": "npx @modelcontextprotocol/inspector node dist/index.js"
   },
   "dependencies": {
-    "mcp-framework": "^0.1.8",
+    "mcp-framework": "^0.2.13",
     "sharp": "^0.34.2"
   },
   "devDependencies": {
