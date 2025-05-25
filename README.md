@@ -316,4 +316,13 @@ image-converter-mcp
 
 ## 라이센스
 
-MIT
+이 프로젝트는 MIT 라이센스 하에 배포됩니다.
+
+### 사용된 라이브러리 라이센스
+- Express.js: MIT
+- Multer: MIT
+- CORS: MIT
+- Node-fetch: MIT
+- Sharp: Apache 2.0
+
+이 프로젝트에 사용된 모든 라이브러리는 MIT 또는 Apache 2.0 라이센스를 사용하며, 이는 상업적 사용을 포함한 대부분의 용도로 자유롭게 사용할 수 있습니다.
