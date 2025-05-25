@@ -16,25 +16,14 @@ class PngToWebpTool { // MCPTool 상속 제거
   name = "png_to_webp";
   description = "PNG 이미지를 WebP 형식으로 변환합니다.";
 
-  schema = {
-    imageData: {
-      type: z.string(),
-      description:
-        "Base64로 인코딩된 PNG 이미지 데이터 (data:image/png;base64,... 형식)",
-    },
-    quality: {
-      type: z.number().min(1).max(100).optional().default(80),
-      description: "WebP 이미지 품질 (1-100, 높을수록 품질이 좋음)",
-    },
-    lossless: {
-      type: z.boolean().optional().default(true),
-      description: "무손실 압축 사용 여부 (기본값: true)",
-    },
-    animated: {
-      type: z.boolean().optional().default(false),
-      description: "애니메이션 지원 여부 (기본값: false)",
-    },
-  } as const; // as const를 추가하여 타입 안정성 확보
+  get schema() {
+    return z.object({
+      imageData: z.string().describe("Base64로 인코딩된 PNG 이미지 데이터 (data:image/png;base64,... 형식)"),
+      quality: z.number().min(1).max(100).optional().default(80).describe("WebP 이미지 품질 (1-100, 높을수록 품질이 좋음)"),
+      lossless: z.boolean().optional().default(true).describe("무손실 압축 사용 여부 (기본값: true)"),
+      animated: z.boolean().optional().default(false).describe("애니메이션 지원 여부 (기본값: false)"),
+    });
+  }
 
   async execute(input: PngToWebpInput) {
     try {

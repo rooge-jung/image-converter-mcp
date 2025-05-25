@@ -3,25 +3,14 @@ import sharp from "sharp";
 import { Request } from 'express'; // Request 타입 임포트
 
 // 입력 파라미터 스키마 정의 (PngToWebpTool.ts 방식 참고)
-const PngFileToWebpSchema = {
-  quality: {
-    type: z.number().min(1).max(100).optional(), // default는 execute에서 처리
-    description: 'WebP 이미지 품질 (1-100, 기본값: 80)',
-  },
-  lossless: {
-    type: z.boolean().optional(), // default는 execute에서 처리
-    description: '무손실 압축 사용 여부 (기본값: true)',
-  },
-  animated: {
-    type: z.boolean().optional(), // default는 execute에서 처리
-    description: '애니메이션 지원 여부 (기본값: false)',
-  },
-  // 파일은 이 스키마에 포함되지 않음. 'imageFile' 필드로 multipart/form-data를 통해 전달.
-} as const;
+// 입력 파라미터 스키마 정의 (파일 자체는 multer로 처리)
+const PngFileToWebpParamsSchema = z.object({
+  quality: z.number().min(1).max(100).optional().default(80).describe("WebP 이미지 품질 (1-100, 기본값: 80)"),
+  lossless: z.boolean().optional().default(true).describe("무손실 압축 사용 여부 (기본값: true)"),
+  animated: z.boolean().optional().default(false).describe("애니메이션 지원 여부 (기본값: false)"),
+});
 
-export type PngFileToWebpInput = z.infer<z.ZodObject<{ 
-  [K in keyof typeof PngFileToWebpSchema]: (typeof PngFileToWebpSchema)[K]['type'] 
-}>>;
+export type PngFileToWebpInput = z.infer<typeof PngFileToWebpParamsSchema>;
 
 // 반환 타입 정의
 interface PngFileToWebpOutput {
@@ -36,7 +25,9 @@ class PngFileToWebpTool {
   name = 'png_file_to_webp';
   description = '업로드된 PNG 파일을 WebP 형식으로 변환하여 Base64로 반환합니다.';
   
-  schema = PngFileToWebpSchema;
+  get schema() {
+    return PngFileToWebpParamsSchema;
+  }
 
   async execute(input: PngFileToWebpInput, context?: any): Promise<PngFileToWebpOutput> {
     const req = context?.customContext as Request | undefined;
