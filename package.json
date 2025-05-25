@@ -1,5 +1,5 @@
 {
-  "name": "image-converter",
+  "name": "image-converter-mcp",
   "version": "1.1.0",
   "description": "image-converter MCP server",
   "type": "module",
@@ -9,6 +9,9 @@
   "files": [
     "dist"
   ],
+  "publishConfig": {
+    "access": "public"
+  },
   "scripts": {
     "build": "tsc && mcp-build",
     "watch": "tsc --watch",
@@ -22,6 +25,19 @@
     "@types/node": "^20.11.24",
     "typescript": "^5.3.3"
   },
+  "license": "MIT",
+  "author": "rooge-jung",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rooge-jung/image-converter-mcp.git"
+  },
+  "keywords": [
+    "mcp",
+    "image",
+    "converter",
+    "webp",
+    "png"
+  ],
   "engines": {
     "node": ">=18.19.0"
   }
