@@ -14,13 +14,14 @@ interface PngToWebpInput {
 }
 
 class PngToWebpTool extends MCPTool<PngToWebpInput> {
-  name = "pngToWebp";
+  name = "png_to_webp";
   description = "PNG 이미지를 WebP 형식으로 변환합니다.";
 
   schema = {
     imageData: {
       type: z.string(),
-      description: "Base64로 인코딩된 PNG 이미지 데이터 (data:image/png;base64,... 형식)",
+      description:
+        "Base64로 인코딩된 PNG 이미지 데이터 (data:image/png;base64,... 형식)",
     },
     quality: {
       type: z.number().min(1).max(100).optional().default(80),
@@ -39,8 +40,11 @@ class PngToWebpTool extends MCPTool<PngToWebpInput> {
   async execute(input: PngToWebpInput) {
     try {
       // Base64에서 Buffer로 변환 (data:image/png;base64, 접두사 제거)
-      const base64Data = input.imageData.replace(/^data:image\/png;base64,/, '');
-      const buffer = Buffer.from(base64Data, 'base64');
+      const base64Data = input.imageData.replace(
+        /^data:image\/png;base64,/,
+        ""
+      );
+      const buffer = Buffer.from(base64Data, "base64");
 
       // WebP 변환 옵션 설정
       const webpOptions: sharp.WebpOptions = {
@@ -52,24 +56,22 @@ class PngToWebpTool extends MCPTool<PngToWebpInput> {
 
       // 이미지 처리
       let image = sharp(buffer, { animated: input.animated });
-      
+
       // 메타데이터 추출 (선택사항)
       const metadata = await image.metadata();
-      
+
       // WebP로 변환
-      const webpBuffer = await image
-        .webp(webpOptions)
-        .toBuffer();
+      const webpBuffer = await image.webp(webpOptions).toBuffer();
 
       // Base64로 인코딩하여 반환
-      const base64WebP = webpBuffer.toString('base64');
+      const base64WebP = webpBuffer.toString("base64");
       const dataUrl = `data:image/webp;base64,${base64WebP}`;
 
       return {
         success: true,
         dataUrl,
         metadata: {
-          format: 'webp',
+          format: "webp",
           width: metadata.width,
           height: metadata.height,
           size: webpBuffer.length,
@@ -78,10 +80,13 @@ class PngToWebpTool extends MCPTool<PngToWebpInput> {
         },
       };
     } catch (error) {
-      console.error('PNG to WebP 변환 중 오류 발생:', error);
+      console.error("PNG to WebP 변환 중 오류 발생:", error);
       return {
         success: false,
-        error: error instanceof Error ? error.message : '알 수 없는 오류가 발생했습니다.',
+        error:
+          error instanceof Error
+            ? error.message
+            : "알 수 없는 오류가 발생했습니다.",
       };
     }
   }

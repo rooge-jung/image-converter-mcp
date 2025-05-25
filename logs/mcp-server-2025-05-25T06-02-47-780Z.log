@@ -1,0 +1,28 @@
+[2025-05-25T06:02:47.801Z] [DEBUG] Successfully read package.json from project root: /Users/fopa/project/mcp/image-converter/package.json
+[2025-05-25T06:02:47.801Z] [INFO] Using name from package.json: image-converter-mcp
+[2025-05-25T06:02:47.801Z] [DEBUG] Successfully read package.json from project root: /Users/fopa/project/mcp/image-converter/package.json
+[2025-05-25T06:02:47.801Z] [INFO] Using version from package.json: 1.1.5
+[2025-05-25T06:02:47.801Z] [INFO] Initializing MCP Server: image-converter-mcp@1.1.5
+[2025-05-25T06:02:47.801Z] [DEBUG] Initialized ToolLoader with directory: /Users/fopa/.npm/_npx/594834ae51fe698b/node_modules/.bin/tools
+[2025-05-25T06:02:47.802Z] [DEBUG] Initialized PromptLoader with directory: /Users/fopa/.npm/_npx/594834ae51fe698b/node_modules/.bin/prompts
+[2025-05-25T06:02:47.802Z] [DEBUG] Initialized ResourceLoader with directory: /Users/fopa/.npm/_npx/594834ae51fe698b/node_modules/.bin/resources
+[2025-05-25T06:02:47.802Z] [DEBUG] Looking for tools in: /Users/fopa/.npm/_npx/594834ae51fe698b/node_modules/.bin/tools
+[2025-05-25T06:02:47.802Z] [DEBUG] Looking for prompts in: /Users/fopa/.npm/_npx/594834ae51fe698b/node_modules/.bin/prompts
+[2025-05-25T06:02:47.802Z] [DEBUG] Looking for resources in: /Users/fopa/.npm/_npx/594834ae51fe698b/node_modules/.bin/resources
+[2025-05-25T06:02:47.802Z] [DEBUG] Attempting to load tools from: /Users/fopa/.npm/_npx/594834ae51fe698b/node_modules/.bin/tools
+[2025-05-25T06:02:47.802Z] [DEBUG] No tools directory found
+[2025-05-25T06:02:47.802Z] [DEBUG] Attempting to load prompts from: /Users/fopa/.npm/_npx/594834ae51fe698b/node_modules/.bin/prompts
+[2025-05-25T06:02:47.802Z] [DEBUG] No prompts directory found
+[2025-05-25T06:02:47.802Z] [DEBUG] Attempting to load resources from: /Users/fopa/.npm/_npx/594834ae51fe698b/node_modules/.bin/resources
+[2025-05-25T06:02:47.802Z] [DEBUG] No resources directory found
+[2025-05-25T06:02:47.803Z] [DEBUG] No prompts directory found
+[2025-05-25T06:02:47.803Z] [DEBUG] No resources directory found
+[2025-05-25T06:02:47.803Z] [DEBUG] Creating MCP Server instance
+[2025-05-25T06:02:47.803Z] [DEBUG] Server created with capabilities: {"tools":{"enabled":true}}
+[2025-05-25T06:02:47.803Z] [INFO] Starting transport...
+[2025-05-25T06:02:47.803Z] [DEBUG] Creating transport: stdio
+[2025-05-25T06:02:47.803Z] [INFO] Starting stdio transport
+[2025-05-25T06:02:47.803Z] [INFO] Transport connected successfully
+[2025-05-25T06:02:47.803Z] [INFO] Started image-converter-mcp@1.1.5
+[2025-05-25T06:02:47.803Z] [INFO] Transport: stdio
+[2025-05-25T06:02:47.803Z] [INFO] Server running and ready for connections
