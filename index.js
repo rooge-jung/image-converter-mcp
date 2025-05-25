@@ -7,7 +7,7 @@ const fetch = require('node-fetch');
 const imageConverter = require('./image-converter');
 
 const app = express();
-const initialPort = process.env.PORT || 10000;
+const initialPort = process.env.PORT || 30000;
 let currentPort = initialPort;
 let server;
 let BASE_URL;
