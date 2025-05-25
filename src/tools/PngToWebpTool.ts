@@ -1,8 +1,7 @@
-import { MCPTool } from "mcp-framework";
 import { z } from "zod";
 import sharp from "sharp";
 
-interface PngToWebpInput {
+export interface PngToWebpInput {
   /** Base64로 인코딩된 PNG 이미지 데이터 */
   imageData: string;
   /** WebP 품질 (1-100, 기본값: 80) */
@@ -13,7 +12,7 @@ interface PngToWebpInput {
   animated?: boolean;
 }
 
-class PngToWebpTool extends MCPTool<PngToWebpInput> {
+class PngToWebpTool { // MCPTool 상속 제거
   name = "png_to_webp";
   description = "PNG 이미지를 WebP 형식으로 변환합니다.";
 
