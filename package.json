@@ -1,6 +1,6 @@
 {
   "name": "image-converter-mcp",
-  "version": "1.1.5",
+  "version": "1.1.6",
   "description": "image-converter MCP server",
   "type": "module",
   "main": "dist/index.js",
